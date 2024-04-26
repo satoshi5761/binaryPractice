@@ -111,7 +111,7 @@ public class binary_practice {
 
 
         System.out.println("Welcome to binary binary binary");
-        System.out.println("[Type exit to end the game]");
+        System.out.println("[Type \"exit\" without quotes to end the game]");
         System.out.print("\n");
 
         while (true) {
