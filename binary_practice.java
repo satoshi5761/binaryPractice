@@ -3,13 +3,13 @@ import java.util.Scanner;
 
 public class binary_practice {
     public static final Scanner input = new Scanner(System.in);
+    public static final Random rand = new Random();
     
     public static int getRandomInteger(int n) {
         /*
         * get a random number
          * in range(0 - n + 1) inclusive
          */
-        Random rand = new Random();
         int random = rand.nextInt(n);
         return random;
     }
@@ -22,7 +22,6 @@ public class binary_practice {
          */
         if (length <= 0) return "";
 
-        Random rand = new Random();
         int bit = rand.nextInt(2);
         return String.valueOf(bit) + getRandomBinary(length - 1);
     }
@@ -80,10 +79,12 @@ public class binary_practice {
         /*
         * game 1 is binary to integer conversion
         */
-        int defaultBinaryLength = 8;
-        String binary = getRandomBinary(defaultBinaryLength);
-        String answer = String.valueOf(binaryToInteger(binary));
+        int n = getRandomInteger(256);
+        int exponent = (int) Math.floor(Math.log(n) / Math.log(2));
+        String binary = integerToBinary(n, exponent);
+        String answer = String.valueOf(n);
 
+        System.out.print("binary: ");
         System.out.println(binary);
 
         String usrAnswer = getInput();
@@ -99,6 +100,7 @@ public class binary_practice {
         int exponent = (int) Math.floor(Math.log(n) / Math.log(2));
         String answer = integerToBinary(n, exponent);
 
+        System.out.print("integer: ");
         System.out.println(n);
 
         String usrAnswer = getInput();
