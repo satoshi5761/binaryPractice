@@ -56,7 +56,7 @@ public class binary_practice {
       String usrAnswer = input.nextLine(); // get user's answer
       System.out.println("|");
       System.out.println("|");
-      System.out.print("--- ");
+        System.out.print("--- ");
       
 
         if (usrAnswer.equals("exit")) System.exit(0);
@@ -64,10 +64,19 @@ public class binary_practice {
     }
 
     public static void checkAnswer(String usrAnswer, String answer) {
+        // ANSI escape code for green color
+        String greenColor = "\u001B[32m";
+
+        // ANSI escape code for red color
+        String redColor = "\u001B[31m";
+        
+        // ANSI escape code to reset color
+        String resetColor = "\u001B[0m";
+
         if (usrAnswer.equals(answer)) {
-            System.out.println("Correct!");
+            System.out.println(greenColor + "Correct!" + resetColor);
         } else {
-            System.out.printf("Incorrect, answer is %s\n", answer);
+            System.out.printf(redColor + "Incorrect, answer is %s\n" + resetColor, answer);
         }
 
         System.out.println("|");
