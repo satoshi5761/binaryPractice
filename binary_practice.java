@@ -89,7 +89,13 @@ public class binary_practice {
         * game 1 is binary to integer conversion
         */
         int n = getRandomInteger(256);
-        int exponent = (int) Math.floor(Math.log(n) / Math.log(2));
+        int exponent;
+        if (n != 0) {
+            exponent = (int) Math.floor(Math.log(n) / Math.log(2));
+        } else {
+            exponent = 0;
+        } 
+
         String binary = integerToBinary(n, exponent);
         String answer = String.valueOf(n);
 
