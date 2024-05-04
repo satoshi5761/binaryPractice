@@ -2,13 +2,29 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class binary_practice {
+    // input 
     public static final Scanner input = new Scanner(System.in);
+
+    // random
     public static final Random rand = new Random();
+    
+    // ANSI escape code for green color
+    public static final String greenColor = "\u001B[32m";
+    
+    // ANSI escape code for red color
+    public static final String redColor = "\u001B[31m";
+    
+    // ANSI escape code to reset color
+    public static final String resetColor = "\u001B[0m";
+
+    // ANSI escape code to make background white
+    // and black foreground
+    public static final String blackInWhite = "\033[30;47m";
     
     public static int getRandomInteger(int n) {
         /*
         * get a random number
-         * in range(0 - n + 1) inclusive
+        * in range(0 to (n - 1)) inclusive
          */
         int random = rand.nextInt(n);
         return random;
@@ -64,14 +80,6 @@ public class binary_practice {
     }
 
     public static void checkAnswer(String usrAnswer, String answer) {
-        // ANSI escape code for green color
-        String greenColor = "\u001B[32m";
-
-        // ANSI escape code for red color
-        String redColor = "\u001B[31m";
-        
-        // ANSI escape code to reset color
-        String resetColor = "\u001B[0m";
 
         if (usrAnswer.equals(answer)) {
             System.out.println(greenColor + "Correct!" + resetColor);
@@ -84,9 +92,9 @@ public class binary_practice {
     }
     
 
-    public static void game1() {
+    public static void playGame(int mode) {
         /*
-        * game 1 is binary to integer conversion
+        * mode == 1 for guess the binary and mode == 0 for guess the integer 
         */
         int n = getRandomInteger(256);
         int exponent;
@@ -97,32 +105,23 @@ public class binary_practice {
         } 
 
         String binary = integerToBinary(n, exponent);
-        String answer = String.valueOf(n);
+        String integer = String.valueOf(n);
 
-        System.out.print("binary: ");
-        System.out.println(binary);
+        String answer;
+        if (mode == 1) {
+            System.out.println(integer);
+            System.out.print(blackInWhite + "binary" + resetColor + " ");
+            answer = binary;
+        } else {
+            System.out.println(binary);
+            System.out.print(blackInWhite + "integer" + resetColor + " ");
+            answer = integer;
+        }
 
         String usrAnswer = getInput();
         
         checkAnswer(usrAnswer, answer);
     }
-
-    public static void game2() {
-        /*
-         * game 2 is integer to binary conversion
-         */
-        int n = getRandomInteger(256);
-        int exponent = (int) Math.floor(Math.log(n) / Math.log(2));
-        String answer = integerToBinary(n, exponent);
-
-        System.out.print("integer: ");
-        System.out.println(n);
-
-        String usrAnswer = getInput();
-
-        checkAnswer(usrAnswer, answer);
-    }
-
 
     public static void main(String[] args) {
 
@@ -132,13 +131,7 @@ public class binary_practice {
 
         while (true) {
             int mode = getRandomInteger(2);
-            if (mode == 0) {
-                game1();
-            } else {
-                game2();
-            }
+            playGame(mode);
         }
     }
-
-
 }
